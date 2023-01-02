@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, redirect, url_for, request
 import os
 import pymysql
 
@@ -10,6 +10,13 @@ def index():
     response = jsonify({"Choo Choo": "Welcome to your  Flask app 🚅"})
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
+
+@app.route('/add')
+def index():
+    user = request.form['nm']
+    response = jsonify({"data": user})
+    response.headers.add("Access-Control-Allow-Origin", "*")
+
 
 @app.route('/data')
 def get_data():
