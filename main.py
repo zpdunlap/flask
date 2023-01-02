@@ -28,7 +28,7 @@ def insert_row():
     ship = request.form['ship']
     base = request.form['base']
 
-    query = "INSERT INTO table_name (name, ship, base) VALUES (%s, %s, %s)"
+    query = "INSERT INTO marked_systems (name, ship, base) VALUES (%s, %s, %s)"
     values = (name, ship, base)
 
     connection = pymysql.connect( host='containers-us-west-32.railway.app', user='root', passwd='Jyfcd452Xe3tmMsFLYDY', port=5522, db='railway' )
