@@ -11,7 +11,7 @@ def index():
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
-@app.route('/add')
+@app.route('/add', methods = ['POST', 'GET'])
 def add():
     user = request.form['nm']
     response = jsonify({"data": user})
