@@ -37,7 +37,9 @@ def insert_row():
         cursor.execute(query, values)
         connection.commit()
 
-    return jsonify({'status': 'success'})
+    response = jsonify({'status': 'success'})
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 
 @app.route('/data')
