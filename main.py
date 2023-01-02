@@ -13,10 +13,30 @@ def index():
 
 @app.route('/add', methods = ['POST', 'GET'])
 def add():
+    # connection = pymysql.connect( host='containers-us-west-32.railway.app', user='root', passwd='Jyfcd452Xe3tmMsFLYDY', port=5522, db='railway' )
+    # with connection.cursor() as cursor:
+    #     sql = "INSERT INTO table_name (name, ship, base) VALUES ('Name', 1, 0)"
+    #     cursor.execute(sql)
     user = request.form['nm']
     response = jsonify({"data": user})
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
+
+@app.route('/insert', methods=['POST'])
+def insert_row():
+    name = request.form['name']
+    ship = request.form['ship']
+    base = request.form['base']
+
+    query = "INSERT INTO table_name (name, ship, base) VALUES (%s, %s, %s)"
+    values = (name, ship, base)
+
+    conn = mysql.connector.connect(user='user', password='password', host='host', database='database')
+    cursor = conn.cursor()
+    cursor.execute(query, values)
+    conn.commit()
+
+    return jsonify({'status': 'success'})
 
 
 @app.route('/data')
