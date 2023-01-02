@@ -31,10 +31,11 @@ def insert_row():
     query = "INSERT INTO table_name (name, ship, base) VALUES (%s, %s, %s)"
     values = (name, ship, base)
 
-    conn = mysql.connector.connect(user='user', password='password', host='host', database='database')
-    cursor = conn.cursor()
-    cursor.execute(query, values)
-    conn.commit()
+    connection = pymysql.connect( host='containers-us-west-32.railway.app', user='root', passwd='Jyfcd452Xe3tmMsFLYDY', port=5522, db='railway' )
+    with connection.cursor() as cursor:
+
+        cursor.execute(query, values)
+        connection.commit()
 
     return jsonify({'status': 'success'})
 
