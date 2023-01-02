@@ -8,7 +8,9 @@ CORS(app)
 
 @app.route('/')
 def index():
-    return jsonify({"Choo Choo": "Welcome to your  Flask app 🚅"})
+    response = jsonify({"Choo Choo": "Welcome to your  Flask app 🚅"})
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 
 if __name__ == '__main__':
