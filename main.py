@@ -12,10 +12,11 @@ def index():
     return response
 
 @app.route('/add')
-def index():
+def add():
     user = request.form['nm']
     response = jsonify({"data": user})
     response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 
 @app.route('/data')
