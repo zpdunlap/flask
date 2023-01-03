@@ -38,7 +38,14 @@ def insert_row():
         result = cursor.fetchall()
         print(result)
 
-        cursor.execute(query, values)
+        if result:
+            print("result found, deleting")
+            query = "DELETE FROM marked_systems WHERE `name`=%s"
+            cursor.execute(sql, (name))
+        else:
+            print("no result found, creating")
+            cursor.execute(query, values)
+
         connection.commit()
 
     response = jsonify({'status': 'success'})
