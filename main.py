@@ -33,6 +33,10 @@ def insert_row():
 
     connection = pymysql.connect( host='containers-us-west-32.railway.app', user='root', passwd='Jyfcd452Xe3tmMsFLYDY', port=5522, db='railway' )
     with connection.cursor() as cursor:
+        sql = "SELECT * FROM `marked_systems`"
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        print(result)
 
         cursor.execute(query, values)
         connection.commit()
@@ -46,7 +50,7 @@ def insert_row():
 def get_data():
     connection = pymysql.connect( host='containers-us-west-32.railway.app', user='root', passwd='Jyfcd452Xe3tmMsFLYDY', port=5522, db='railway' )
     with connection.cursor() as cursor:
-        # Read a single record
+        
         sql = "SELECT * FROM `marked_systems`"
         cursor.execute(sql)
         result = cursor.fetchall()
