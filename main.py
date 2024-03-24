@@ -8,7 +8,8 @@ def get_news():
     # Call the news API here and convert the response to the desired format
     response = requests.get('https://news-api.com/top-stories')
     news = process_news_response(response)
-    return jsonify(news)
+    users = [{'id': 1, 'username': 'Alice'}, {'id': 2, 'username': 'Bob'}]
+    return jsonify(users, status=200, mimetype='application/json')
 
 @app.route('/api/weather', methods=['GET'])
 def get_weather():
