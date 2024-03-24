@@ -1,8 +1,65 @@
-click==7.1.2
-Flask==1.1.2
-gunicorn==20.0.4
-itsdangerous==1.1.0
-Jinja2==2.11.3
-MarkupSafe==1.1.1
-Werkzeug==1.0.1
-pymysql
+# Requirements for the API
+# --------------------
+
+# Flask is the web framework used to build the API
+Flask==2.2.2
+
+# Requests is used to make HTTP requests to other APIs
+requests==2.28.1
+
+# Pandas is used to manipulate data (news, weather, reddit)
+pandas==1.5.1
+
+# Beautiful Soup 4 is used to parse HTML from websites (for news)
+beautifulsoup4==4.11.1
+
+# LXML is used to speed up Beautiful Soup 4
+lxml==4.9.2
+
+# Newspaper3k is used to extract news articles
+newspaper3k==0.2.9
+
+# OpenWeatherMap is used to get weather information
+PyOWM==3.3.0
+
+# Praw is used to interact with Reddit API
+praw==7.6.0
+
+# Requests-oauthlib is used in conjunction with Praw to authenticate with Reddit API
+requests-oauthlib==1.3.1
+
+# psycopg2 is used to interact with PostgreSQL database
+psycopg2-binary==2.9.5
+
+# Flask-CORS is used to enable Cross-Origin Resource Sharing (CORS)
+Flask-CORS==3.2.0
+
+# Flask-SQLAlchemy is used to interact with SQL databases
+Flask-SQLAlchemy==3.0.2
+
+# SQLAlchemy is used to interact with SQL databases
+SQLAlchemy==2.0.11
+
+# Flask-Migrate is used to manage database migrations
+Flask-Migrate==4.0.4
+
+# Flask-Testing is used to test the API
+Flask-Testing==0.8.1
+
+# Pytest is used to test the API
+pytest==7.1.3
+
+# Pytest-FactoryBoy is used to generate test data
+pytest-factoryboy==2.5.2
+
+# FactoryBoy is used to generate test data
+FactoryBoy==3.2.1
+
+# Faker is used to generate test data
+Faker==13.15.1
+
+# Coverage is used to test the API coverage
+coverage==6.5.0
+
+# Flake8 is used to check the quality of the code
+flake8==6.0.0
