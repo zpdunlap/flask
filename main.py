@@ -1,74 +1,40 @@
-from flask import Flask, jsonify, redirect, url_for, request
-import os
-import pymysql
+from flask import Flask, jsonify
+import requests
 
 app = Flask(__name__)
 
+@app.route('/api/news', methods=['GET'])
+def get_news():
+    # Call the news API here and convert the response to the desired format
+    response = requests.get('https://news-api.com/top-stories')
+    news = process_news_response(response)
+    return jsonify(news)
 
-@app.route('/')
-def index():
-    response = jsonify({"Choo Choo": "Welcome to your  Flask app 🚅"})
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    return response
+@app.route('/api/weather', methods=['GET'])
+def get_weather():
+    # Call the weather API here and convert the response to the desired format
+    response = requests.get('https://weather-api.com/todays-weather')
+    weather = process_weather_response(response)
+    return jsonify(weather)
 
-@app.route('/add', methods = ['POST', 'GET'])
-def add():
-    # connection = pymysql.connect( host='containers-us-west-32.railway.app', user='root', passwd='Jyfcd452Xe3tmMsFLYDY', port=5522, db='railway' )
-    # with connection.cursor() as cursor:
-    #     sql = "INSERT INTO table_name (name, ship, base) VALUES ('Name', 1, 0)"
-    #     cursor.execute(sql)
-    user = request.form['nm']
-    response = jsonify({"data": user})
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    return response
+@app.route('/api/reddit', methods=['GET'])
+def get_reddit():
+    # Call the Reddit API here and convert the response to the desired format
+    response = requests.get('https://reddit.com/highlights')
+    reddit = process_reddit_response(response)
+    return jsonify(reddit)
 
-@app.route('/insert', methods=['POST'])
-def insert_row():
-    name = request.form['name']
-    ship = request.form['ship']
-    base = request.form['base']
+def process_news_response(response):
+    # Implement the logic to convert the response from the news API to the desired format
+    pass
 
-    query = "INSERT INTO marked_systems (name, ship, base) VALUES (%s, %s, %s)"
-    values = (name, ship, base)
+def process_weather_response(response):
+    # Implement the logic to convert the response from the weather API to the desired format
+    pass
 
-    connection = pymysql.connect( host='containers-us-west-32.railway.app', user='root', passwd='Jyfcd452Xe3tmMsFLYDY', port=5522, db='railway' )
-    with connection.cursor() as cursor:
-        sql = "SELECT * FROM `marked_systems` WHERE `name`=%s"
-        cursor.execute(sql, (name))
-        result = cursor.fetchall()
-        print(result)
-
-        if result:
-            print("result found, deleting")
-            query = "DELETE FROM marked_systems WHERE `name`=%s"
-            cursor.execute(sql, (name))
-        else:
-            print("no result found, creating")
-            cursor.execute(query, values)
-
-        connection.commit()
-
-    response = jsonify({'status': 'success'})
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    return response
-
-
-@app.route('/data')
-def get_data():
-    connection = pymysql.connect( host='containers-us-west-32.railway.app', user='root', passwd='Jyfcd452Xe3tmMsFLYDY', port=5522, db='railway' )
-    with connection.cursor() as cursor:
-        
-        sql = "SELECT * FROM `marked_systems`"
-        cursor.execute(sql)
-        result = cursor.fetchall()
-        print(result)
-
-
-
-    response = jsonify({"data": result})
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    return response
-
+def process_reddit_response(response):
+    # Implement the logic to convert the response from the Reddit API to the desired format
+    pass
 
 if __name__ == '__main__':
-    app.run(debug=True, port=os.getenv("PORT", default=5000))
+    app.run(debug=True)
