@@ -3,11 +3,32 @@ import requests
 
 app = Flask(__name__)
 
+def get_latest_news_stories():
+    # ' with your actual API key from News API
+    api_key = '7f6e1db3470a441fbdd21e6ad146864f'
+    base_url = 'https://newsapi.org/v2/top-headlines'
+    params = {
+        'apiKey': api_key,
+        'country': 'us'
+    }
+
+    try:
+        response = requests.get(base_url, params=params)
+        response.raise_for_status()
+        data = response.json()
+        return data['articles']
+    except requests.exceptions.RequestException as e:
+        print(f"Error: {e}")
+        return []
+    except (KeyError, TypeError) as e:
+        print(f"Error: {e}")
+        return []
+
 @app.route('/api/news', methods=['GET'])
 def get_news():
     # Call the news API here and convert the response to the desired format
     response = requests.get('https://news-api.com/top-stories')
-    news = process_news_response(response)
+    news =  get_latest_news_stories() process_news_response(response)
     return jsonify(news)
     #users = [{'id': 1, 'username': 'Alice'}, {'id': 2, 'username': 'Bob'}]
     #return jsonify(users, status=200, mimetype='application/json')
