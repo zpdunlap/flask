@@ -7,16 +7,23 @@ def get_latest_news_stories():
     # ' with your actual API key from News API
     api_key = '7f6e1db3470a441fbdd21e6ad146864f'
     base_url = 'https://newsapi.org/v2/top-headlines'
+    import requests
+
+def get_latest_news_stories():
+    # Replace 'your_api_key_here' with your actual API key from News API
+    api_key = 'your_api_key_here'
+    base_url = 'https://newsapi.org/v2/top-headlines'
     params = {
         'apiKey': api_key,
-        'country': 'us'
+        'country': 'us',
+        'pageSize': 5
     }
 
     try:
         response = requests.get(base_url, params=params)
         response.raise_for_status()
         data = response.json()
-        return data['articles']
+        return [{'title': story['title'], 'description': story['description']} for story in data['articles']]
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
         return []
