@@ -4,6 +4,8 @@
 # Flask is the web framework used to build the API
 Flask==2.2.2
 
+gunicorn==20.0.4
+
 # Requests is used to make HTTP requests to other APIs
 requests==2.28.1
 
