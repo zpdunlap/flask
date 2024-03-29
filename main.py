@@ -7,12 +7,6 @@ def get_latest_news_stories():
     # ' with your actual API key from News API
     api_key = '7f6e1db3470a441fbdd21e6ad146864f'
     base_url = 'https://newsapi.org/v2/top-headlines'
-    import requests
-
-def get_latest_news_stories():
-    # Replace 'your_api_key_here' with your actual API key from News API
-    api_key = 'your_api_key_here'
-    base_url = 'https://newsapi.org/v2/top-headlines'
     params = {
         'apiKey': api_key,
         'country': 'us',
