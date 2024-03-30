@@ -1,5 +1,5 @@
-from flask import Flask, jsonify
 import requests
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
@@ -18,11 +18,11 @@ def get_latest_news_stories():
         response.raise_for_status()
         news_stories = response.json()
         for i, story in enumerate(news_stories[:5], start=1):
-             news_dict[i] = {
-            'title': story['title'],
-            'description': story['description']
-        }
-return news_dict
+            news_dict[i] = {
+                'title': story['title'],
+                'description': story['description']
+            }
+        return news_dict
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
         return []
