@@ -18,7 +18,7 @@ def get_latest_news_stories():
         response.raise_for_status()
         news_stories = response.json()
         for i, story in enumerate(news_stories[:5], start=1):
-        news_dict[i] = {
+news_dict[i] = {
             'title': story['title'],
             'description': story['description']
         }
