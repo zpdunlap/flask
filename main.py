@@ -22,8 +22,7 @@ def get_latest_news_stories():
             'title': story['title'],
             'description': story['description']
         }
-
-    return news_dict
+return news_dict
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
         return []
