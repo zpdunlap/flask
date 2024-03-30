@@ -16,8 +16,14 @@ def get_latest_news_stories():
     try:
         response = requests.get(base_url, params=params)
         response.raise_for_status()
-        data = response.json()
-        return [{'title': story['title'], 'description': story['description']} for story in data['articles']]
+        news_stories = response.json()
+        for i, story in enumerate(news_stories[:5], start=1):
+        news_dict[i] = {
+            'title': story['title'],
+            'description': story['description']
+        }
+
+    return news_dict
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
         return []
